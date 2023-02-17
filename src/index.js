@@ -7,7 +7,7 @@ import CustomsRoutes from './customsRoutes';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    welcome toto
+ 
   <CustomsRoutes/>
   </React.StrictMode>
 );
