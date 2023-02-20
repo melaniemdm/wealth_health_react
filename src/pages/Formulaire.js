@@ -5,14 +5,51 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import {  useDispatch, useSelector } from 'react-redux';
+import { addEmployee } from '../store/redux';
+
+
 
 export default function Formulaire(){
+    //appel du store
+    const employee =useSelector((state)=>state.allEmployees)   
+    const dispatch = useDispatch();
+    console.log(employee)
+
+    async function validEmployee(){
+        // recupere les value des input
+        const firstName = document.querySelector("#first-name").value;
+        const lastName = document.querySelector("#last-name").value
+        const dateBirth = document.querySelector("#date-of-birth").value
+        const startDate = document.querySelector("#start-date").value
+        const street = document.querySelector("#street").value
+        //const stateCode = document.querySelector("#state").value
+        const city = document.querySelector("#city").value
+        const zipCode = document.querySelector("#zip-code").value
+        //const department = document.querySelector("#department").value
+        
+        
+        // payload de l'action
+        const newEmployeeInfo={
+        firstName : firstName,
+        lastName : lastName,
+        startDate : startDate,
+        //department :department,
+        dateBirth : dateBirth,
+        street : street,
+        city : city,
+        //stateCode :stateCode,
+        zipCode : zipCode,
+        }
+        
+       dispatch(addEmployee(newEmployeeInfo))
+        }
     const [startDate, setStartDate] = useState(new Date());
     const [modalIsOpen, setIsOpen] = useState(false);
     function openModal() {
         setIsOpen(true);
       }
-    
+
     function closeModal() {
         setIsOpen(false);
       }
@@ -26,7 +63,7 @@ export default function Formulaire(){
           transform: 'translate(-50%, -50%)',
         },
       };
-     
+
       const options = [
         'Sales', 'Marketing', 'Engineering', 'Human Resources', 'Legal'
       ];
@@ -269,7 +306,7 @@ export default function Formulaire(){
             "name": "Wyoming",
             "abbreviation": "WY"
         }
-    
+
     ];
     const [selectedState, setSelectedState] = useState(states[0].name);
     return <div>
@@ -279,7 +316,7 @@ export default function Formulaire(){
         <div className="container">
             <Link to="/EmployeeList">View Current Employees</Link>
             <h2>Create Employee</h2>
-            <form action="#" id="create-employee"> 
+            <form action="#" id="create-employee">
                 <label htmlFor="first-name">First Name</label>
                 <input type="text" id="first-name" />
 
@@ -310,28 +347,30 @@ export default function Formulaire(){
 
                 <label htmlFor="department">Department</label>
                 <Dropdown  placeholder="Select an option"  value={selectedOption} options={options} onChange={e => setSelectedOption(e.target.value) }  name="department" id="department"/>
-                
+
             </form>
 
     <button onClick={openModal}>Save</button>
+    <button onClick={validEmployee}>test</button>
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="modal create"
       >
-       
+
         <div id="confirmation" className="modal">Employee Created!</div>
         <button onClick={closeModal}>close</button>
+       
         <form>
-         
+
         </form>
       </Modal>
-           
+
         </div>
-       
-      
-    
-    
+
+
+
+
     </div>
 }
