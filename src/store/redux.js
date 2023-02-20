@@ -22,13 +22,13 @@ addEmployee:(state, action)=>{
 }
 
 //partie du store
-const userSlice = createSlice(employeeParameters);
-export const {addEmployee} = userSlice.actions;
+const employeeSlice = createSlice(employeeParameters);
+export const {addEmployee} = employeeSlice.actions;
 
 // création du store 
 export const store = configureStore({
     reducer: {
-        allEmployees: userSlice.reducer,
+        allEmployees: employeeSlice.reducer,
   
     },
   });
