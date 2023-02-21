@@ -12,9 +12,9 @@ import { addEmployee } from '../store/redux';
 
 export default function Formulaire(){
     //appel du store
-    const employee =useSelector((state)=>state.allEmployees)   
+    const employees =useSelector((state)=>state.allEmployees)   
     const dispatch = useDispatch();
-    console.log(employee)
+    console.log(employees)
 
     async function validEmployee(){
         // recupere les value des input
