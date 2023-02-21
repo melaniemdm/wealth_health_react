@@ -11,21 +11,21 @@ import { addEmployee } from '../store/redux';
 
 
 export default function Formulaire(){
-    //appel du store
+    //recuperation du store
     const employees =useSelector((state)=>state.allEmployees)   
     const dispatch = useDispatch();
     console.log(employees)
 
     async function validEmployee(){
         // recupere les value des input
-        const firstName = document.querySelector("#first-name").value;
-        const lastName = document.querySelector("#last-name").value
-        const dateBirth = document.querySelector("#date-of-birth").value
-        const startDate = document.querySelector("#start-date").value
+        const firstName = document.querySelector("#firstName").value;
+        const lastName = document.querySelector("#lastName").value
+        const dateBirth = document.querySelector("#dateBirth").value
+        const startDate = document.querySelector("#startDate").value
         const street = document.querySelector("#street").value
-        //const stateCode = document.querySelector("#state").value
+        //const stateCode = document.querySelector("#stateCode").value
         const city = document.querySelector("#city").value
-        const zipCode = document.querySelector("#zip-code").value
+        const zipCode = document.querySelector("#zipCode").value
         //const department = document.querySelector("#department").value
         
         
@@ -317,17 +317,17 @@ export default function Formulaire(){
             <Link to="/EmployeeList">View Current Employees</Link>
             <h2>Create Employee</h2>
             <form action="#" id="create-employee">
-                <label htmlFor="first-name">First Name</label>
-                <input type="text" id="first-name" />
+                <label htmlFor="firstName">First Name</label>
+                <input type="text" id="firstName" />
 
-                <label htmlFor="last-name">Last Name</label>
-                <input type="text" id="last-name" />
+                <label htmlFor="lastName">Last Name</label>
+                <input type="text" id="lastName" />
 
-                <label htmlFor="date-of-birth">Date of Birth</label>
-                <DatePicker id="date-of-birth" selected={startDate} onChange={(date) => setStartDate(date)} />
+                <label htmlFor="dateBirth">Date of Birth</label>
+                <DatePicker id="dateBirth" selected={startDate} onChange={(date) => setStartDate(date)} />
 
-                <label htmlFor="start-date">Start Date</label>
-                <DatePicker id="start-date" selected={startDate} onChange={(date) => setStartDate(date)} />
+                <label htmlFor="startDate">Start Date</label>
+                <DatePicker id="startDate" selected={startDate} onChange={(date) => setStartDate(date)} />
 
                 <fieldset className="address">
                     <legend>Address</legend>
@@ -338,11 +338,11 @@ export default function Formulaire(){
                     <label htmlFor="city">City</label>
                     <input id="city" type="text" />
 
-                    <label htmlFor="state">State</label>
-                    <Dropdown  placeholder="Select an option"  value={selectedState} options={states.map(state=>state.name)} onChange={e => setSelectedState(e.target.value) }  name="state" id="state"/>
+                    <label htmlFor="stateCode">State</label>
+                    <Dropdown  placeholder="Select an option"  value={selectedState} options={states.map(state=>state.name)} onChange={e => setSelectedState(e.target.value) }  name="stateCode" id="stateCode"/>
 
-                    <label htmlFor="zip-code">Zip Code</label>
-                    <input id="zip-code" type="number" />
+                    <label htmlFor="zipCode">Zip Code</label>
+                    <input id="zipCode" type="number" />
                 </fieldset>
 
                 <label htmlFor="department">Department</label>

@@ -19,6 +19,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 
 
@@ -47,6 +48,12 @@ const tableIcons = {
  
 
 export default function EmployeeList(){
+ //recuperation du store
+ const employees =useSelector((state)=>state.allEmployees)  
+console.log(employees);
+const data = employees.map(employee => ({ ...employee }));
+
+      //tableau
     const defaultMaterialTheme = createTheme();
 
         
@@ -62,25 +69,17 @@ export default function EmployeeList(){
         
         title=" "
         columns={[
-          { title: 'First Name', field: 'FirstName' },
-          { title: 'Last Name', field: 'LastName' },
-          { title: 'Start date', field: 'start-date' },
-          { title: 'Department', field: 'Department' },
-          { title: 'Date of Birth', field: 'date-of-birth' },
-          { title: 'Street', field: 'Street' },
+          { title: 'First Name', field: 'firstName' },
+          { title: 'Last Name', field: 'lastName' },
+          { title: 'Start date', field: 'startDate' },
+          { title: 'Department', field: 'department' },
+          { title: 'Date of Birth', field: 'dateBirth' },
+          { title: 'Street', field: 'street' },
           { title: 'City', field: 'city' },
-          { title: 'State', field: 'state' },
-          { title: 'Zip code', field: 'zip-code' },
+          { title: 'State', field: 'stateCode' },
+          { title: 'Zip code', field: 'zipCode' },
         ]}
-        data={[
-          { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-          { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-          { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-          { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-          { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-         
-          
-        ]}    
+        data={data}    
         options={{
             search: true
           }}
