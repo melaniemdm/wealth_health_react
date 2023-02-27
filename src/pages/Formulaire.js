@@ -1,12 +1,12 @@
 import { HashLink as Link } from 'react-router-hash-link';
 import DatePicker from "react-datepicker";
-import Modal from 'react-modal';
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
 import {  useDispatch, useSelector } from 'react-redux';
 import { addEmployee } from '../store/redux';
+import { SimpleModal, openModal } from 'mdm-simple-modal';
 
 
 
@@ -45,24 +45,7 @@ export default function Formulaire(){
        dispatch(addEmployee(newEmployeeInfo))
         }
     const [startDate, setStartDate] = useState(new Date());
-    const [modalIsOpen, setIsOpen] = useState(false);
-    function openModal() {
-        setIsOpen(true);
-      }
-
-    function closeModal() {
-        setIsOpen(false);
-      }
-      const customStyles = {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-        },
-      };
+    
 
       const options = [
         'Sales', 'Marketing', 'Engineering', 'Human Resources', 'Legal'
@@ -350,26 +333,18 @@ export default function Formulaire(){
 
             </form>
 
-    <button onClick={openModal}>Save</button>
-    <button onClick={validEmployee}>test</button>
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="modal create"
-      >
-
-        <div id="confirmation" className="modal">Employee Created!</div>
-        <button onClick={closeModal}>close</button>
-       
+    
+    <button  onClick={() => {
+        //declenche l'ouverture de la modal
+          openModal();
+          validEmployee();
+        }}>Save</button>
+   
         <form>
-
         </form>
-      </Modal>
-
         </div>
-
-
+{/* appel du composant modal */}
+<SimpleModal text="Employee created !" options={{width:'600px', maskBgColor: 'rgba(91, 91, 101, 0.5)'}}></SimpleModal>
 
 
     </div>
