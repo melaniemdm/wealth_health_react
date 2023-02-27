@@ -16,42 +16,12 @@ export default function Formulaire(){
     const dispatch = useDispatch();
     console.log(employees)
 
-    async function validEmployee(){
-        // recupere les value des input
-        const firstName = document.querySelector("#firstName").value;
-        const lastName = document.querySelector("#lastName").value
-        const dateBirth = document.querySelector("#dateBirth").value
-        const startDate = document.querySelector("#startDate").value
-        const street = document.querySelector("#street").value
-        //const stateCode = document.querySelector("#stateCode").value
-        const city = document.querySelector("#city").value
-        const zipCode = document.querySelector("#zipCode").value
-        //const department = document.querySelector("#department").value
-        
-        
-        // payload de l'action
-        const newEmployeeInfo={
-        firstName : firstName,
-        lastName : lastName,
-        startDate : startDate,
-        //department :department,
-        dateBirth : dateBirth,
-        street : street,
-        city : city,
-        //stateCode :stateCode,
-        zipCode : zipCode,
-        }
-        
-       dispatch(addEmployee(newEmployeeInfo))
-        }
-    const [startDate, setStartDate] = useState(new Date());
     
-
-      const options = [
+    const [startDate, setStartDate] = useState(new Date());
+    const departments = [
         'Sales', 'Marketing', 'Engineering', 'Human Resources', 'Legal'
       ];
-    const [selectedOption, setSelectedOption] = useState(options[0].value);
-
+    const [selectedDepartment, setSelectedDepartment] = useState(departments[0]);
     const states = [
         {
             "name": "Alabama",
@@ -291,7 +261,48 @@ export default function Formulaire(){
         }
 
     ];
-    const [selectedState, setSelectedState] = useState(states[0].name);
+    const [selectedState, setSelectedState] = useState(states[0]);
+async function validEmployee(){
+        // recupere les value des input
+        const firstName = document.querySelector("#firstName").value;
+        const lastName = document.querySelector("#lastName").value;
+        const dateBirth = document.querySelector("#dateBirth").value;
+        const startDate = document.querySelector("#startDate").value;
+        const street = document.querySelector("#street").value;
+        const stateCode = selectedState;
+        const city = document.querySelector("#city").value;
+        const zipCode = document.querySelector("#zipCode").value;
+        const department=selectedDepartment;
+        
+        
+        // payload de l'action
+        const newEmployeeInfo={
+        firstName : firstName,
+        lastName : lastName,
+        startDate : startDate,
+        department :department,
+        dateBirth : dateBirth,
+        street : street,
+        city : city,
+        stateCode :stateCode,
+        zipCode : zipCode,
+        }
+        
+       dispatch(addEmployee(newEmployeeInfo))
+        }
+//recupere l'option de department        
+function onSelectDepartment(option){
+    const seletedOption= {selected: option}
+    console.log(seletedOption)
+    setSelectedDepartment(seletedOption.selected.value)
+}
+//recupere l'option de State
+function onSelectState(option){
+const selecState={selected: option}
+console.log(selecState)
+setSelectedState(selecState.selected.value)
+}
+
     return <div>
 <div className="title">
             <h1>HRnet</h1>
@@ -322,14 +333,14 @@ export default function Formulaire(){
                     <input id="city" type="text" />
 
                     <label htmlFor="stateCode">State</label>
-                    <Dropdown  placeholder="Select an option"  value={selectedState} options={states.map(state=>state.name)} onChange={e => setSelectedState(e.target.value) }  name="stateCode" id="stateCode"/>
+                    <Dropdown  placeholder="Select an option"  value={selectedState} options={states.map(state=>state.name)} onChange={onSelectState }  name="stateCode" id="stateCode"/>
 
                     <label htmlFor="zipCode">Zip Code</label>
                     <input id="zipCode" type="number" />
                 </fieldset>
 
                 <label htmlFor="department">Department</label>
-                <Dropdown  placeholder="Select an option"  value={selectedOption} options={options} onChange={e => setSelectedOption(e.target.value) }  name="department" id="department"/>
+                <Dropdown  placeholder="Select an option"  value={selectedDepartment} options={departments} onChange={onSelectDepartment}  name="department" id="department"/>
 
             </form>
 
