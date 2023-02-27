@@ -261,7 +261,7 @@ export default function Formulaire(){
         }
 
     ];
-    const [selectedState, setSelectedState] = useState(states[0]);
+    const [selectedState, setSelectedState] = useState(states[0].name);
 async function validEmployee(){
         // recupere les value des input
         const firstName = document.querySelector("#firstName").value;
