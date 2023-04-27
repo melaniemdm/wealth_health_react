@@ -1,8 +1,7 @@
 
 import MaterialTable from 'material-table';
 import { ThemeProvider, createTheme } from '@mui/material';
-import { forwardRef } from 'react';
-
+import { forwardRef, React } from 'react';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -22,9 +21,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
-
-
-const React = require('react'); console.log(React.version);
+//icons de l'app
 const tableIcons = {
     Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -49,24 +46,24 @@ const tableIcons = {
 
 export default function EmployeeList(){
  //recuperation du store
- const employees =useSelector((state)=>state.allEmployees)  
-console.log(employees);
+const employees =useSelector((state)=>state.allEmployees)  
+// copie des employées du store dans l'objet data car le state est immuable et le composant MaterialTable doit modifier les objects du tableau de données
 const data = employees.map(employee => ({ ...employee }));
 
-      //tableau
+      //creation du thème pour le tableau
     const defaultMaterialTheme = createTheme();
 
-        
     return <div>
  <div id="employee-div" className="container">
             <h1>Current Employees</h1>
             <table id="employee-table" className="display"></table>
            
         </div>
+        {/* plugin de thème material UI */}
         <ThemeProvider theme={defaultMaterialTheme}>
+          {/* plugin du tableau liste des employers */} 
         <MaterialTable
         icons={tableIcons}
-        
         title=" "
         columns={[
           { title: 'First Name', field: 'firstName' },
@@ -79,6 +76,7 @@ const data = employees.map(employee => ({ ...employee }));
           { title: 'State', field: 'stateCode' },
           { title: 'Zip code', field: 'zipCode' },
         ]}
+        // props la liste des employers
         data={data}    
         options={{
             search: true

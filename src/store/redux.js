@@ -21,8 +21,9 @@ addEmployee:(state, action)=>{
 },
 }
 
-//partie du store
+//création de la partie du store 
 const employeeSlice = createSlice(employeeParameters);
+// exporte les actions
 export const {addEmployee} = employeeSlice.actions;
 
 // création du store 

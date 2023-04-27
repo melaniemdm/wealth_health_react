@@ -4,19 +4,16 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useState } from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import {  useDispatch, useSelector } from 'react-redux';
+import {  useDispatch } from 'react-redux';
 import { addEmployee } from '../store/redux';
 import { SimpleModal, openModal } from 'mdm-simple-modal';
 
 
 
 export default function Formulaire(){
-    //recuperation du store
-    const employees =useSelector((state)=>state.allEmployees)   
+// création de la fonction pour le dispatch dans la liste des nouveaux employés
     const dispatch = useDispatch();
-    console.log(employees)
-
-    
+// state des champs du formulaire
     const [startDate, setStartDate] = useState(new Date());
     const departments = [
         'Sales', 'Marketing', 'Engineering', 'Human Resources', 'Legal'
@@ -274,7 +271,6 @@ async function validEmployee(){
         const zipCode = document.querySelector("#zipCode").value;
         const department=selectedDepartment;
         
-        
         // payload de l'action
         const newEmployeeInfo={
         firstName : firstName,
@@ -287,19 +283,17 @@ async function validEmployee(){
         stateCode :stateCode,
         zipCode : zipCode,
         }
-        
+       // appel de la function use dispatch avec en paramètre l'action et le nouvel employé
        dispatch(addEmployee(newEmployeeInfo))
         }
 //recupere l'option de department        
 function onSelectDepartment(option){
     const seletedOption= {selected: option}
-    console.log(seletedOption)
     setSelectedDepartment(seletedOption.selected.value)
 }
 //recupere l'option de State
 function onSelectState(option){
 const selecState={selected: option}
-console.log(selecState)
 setSelectedState(selecState.selected.value)
 }
 
@@ -318,9 +312,11 @@ setSelectedState(selecState.selected.value)
                 <input type="text" id="lastName" />
 
                 <label htmlFor="dateBirth">Date of Birth</label>
+                {/* plugin formulaire de date */}
                 <DatePicker id="dateBirth" selected={startDate} onChange={(date) => setStartDate(date)} />
 
                 <label htmlFor="startDate">Start Date</label>
+                {/* plugin formulaire de date */}
                 <DatePicker id="startDate" selected={startDate} onChange={(date) => setStartDate(date)} />
 
                 <fieldset className="address">
@@ -333,6 +329,7 @@ setSelectedState(selecState.selected.value)
                     <input id="city" type="text" />
 
                     <label htmlFor="stateCode">State</label>
+                    {/* plugin menu déroulant */}
                     <Dropdown  placeholder="Select an option"  value={selectedState} options={states.map(state=>state.name)} onChange={onSelectState }  name="stateCode" id="stateCode"/>
 
                     <label htmlFor="zipCode">Zip Code</label>
@@ -340,6 +337,7 @@ setSelectedState(selecState.selected.value)
                 </fieldset>
 
                 <label htmlFor="department">Department</label>
+                 {/* plugin menu déroulant */}
                 <Dropdown  placeholder="Select an option"  value={selectedDepartment} options={departments} onChange={onSelectDepartment}  name="department" id="department"/>
 
             </form>
@@ -354,7 +352,7 @@ setSelectedState(selecState.selected.value)
         <form>
         </form>
         </div>
-{/* appel du composant modal */}
+{/* appel de la library simple modal */}
 <SimpleModal text="Employee created !" options={{width:'600px', maskBgColor: 'rgba(91, 91, 101, 0.5)'}}></SimpleModal>
 
 

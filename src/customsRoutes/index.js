@@ -10,6 +10,7 @@ import { store } from "../store/redux";
 export default function CustomsRoutes(){
     return (
        <Router>
+        {/* encapsule les composant qui vont utliser le store, mise à disposition du store pour les composants du dessous */}
         <Provider store={store}>
 
 <Routes>
