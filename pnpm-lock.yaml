@@ -18,7 +18,7 @@ specifiers:
   '@testing-library/user-event': ^13.5.0
   compress-create-react-app: ^1.3.1
   material-table: ^2.0.3
-  mdm-simple-modal: ^2.0.4
+  mdm-simple-modal: ^2.0.24
   node-sass: ^8.0.0
   prop-types: ^15.7.2
   react: ^18.2.0
@@ -50,7 +50,7 @@ dependencies:
   '@testing-library/react': 13.4.0_biqbaboplfbrettd7655fr4n2y
   '@testing-library/user-event': 13.5.0_yxlyej73nftwmh2fiao7paxmlm
   material-table: 2.0.3_4be3ggrk7twvpooentpfhnltfe
-  mdm-simple-modal: 2.0.4_react@18.2.0
+  mdm-simple-modal: 2.0.24_react@18.2.0
   node-sass: 8.0.0
   prop-types: 15.8.1
   react: 18.2.0
@@ -8038,8 +8038,8 @@ packages:
       - react-native
     dev: false
 
-  /mdm-simple-modal/2.0.4_react@18.2.0:
-    resolution: {integrity: sha512-WHnCAL7K380nRGkwXXdqEqSUDl6DqHWkCkMrYZMmIEGARGenM+q6peXQzh9OwVnOY61IXGwDTwVXrUHv/JB0vA==}
+  /mdm-simple-modal/2.0.24_react@18.2.0:
+    resolution: {integrity: sha512-EeXtEZNKkJRRq72J4RbCBpAuNZHxXzOdoQKWFxTMxu14UyIGId6HjSEJKIm7oVWApLmGpzw5K5Ad/JRtC25amA==}
     engines: {node: '>=10'}
     peerDependencies:
       react: ^16.0.0
