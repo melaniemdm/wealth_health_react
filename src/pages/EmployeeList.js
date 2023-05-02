@@ -49,7 +49,18 @@ export default function EmployeeList() {
   const employees = useSelector((state) => state.allEmployees);
   // copie des employées du store dans l'objet data car le state est immuable et le composant MaterialTable doit modifier les objects du tableau de données
   const data = employees.map((employee) => ({ ...employee }));
-
+  //creation du tableau decrivant chaque colonne
+const columns = [
+            { title: "First Name", field: "firstName" },
+            { title: "Last Name", field: "lastName" },
+            { title: "Start date", field: "startDate" },
+            { title: "Department", field: "department" },
+            { title: "Date of Birth", field: "dateBirth" },
+            { title: "Street", field: "street" },
+            { title: "City", field: "city" },
+            { title: "State", field: "stateCode" },
+            { title: "Zip code", field: "zipCode" },
+          ]
   //creation du thème pour le tableau
   const defaultMaterialTheme = createTheme();
 
@@ -65,17 +76,7 @@ export default function EmployeeList() {
         <MaterialTable
           icons={tableIcons}
           title=" "
-          columns={[
-            { title: "First Name", field: "firstName" },
-            { title: "Last Name", field: "lastName" },
-            { title: "Start date", field: "startDate" },
-            { title: "Department", field: "department" },
-            { title: "Date of Birth", field: "dateBirth" },
-            { title: "Street", field: "street" },
-            { title: "City", field: "city" },
-            { title: "State", field: "stateCode" },
-            { title: "Zip code", field: "zipCode" },
-          ]}
+          columns={columns}
           // props la liste des employers
           data={data}
           options={{
